@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision Tree Insights | Deep Dive</title>
+    <link rel="stylesheet" href="styles/blog-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="blog-header">
+        <div class="container">
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            <h1>Decision Tree: From Scratch to Insights</h1>
+        </div>
+    </header>
+    
+    <main class="blog-content container">
+        <article class="blog-post">
+            <!-- Author section commented out but improved for future use
+            <section class="post-header">
+                <div class="author-info">
+                    <img src="/api/placeholder/80/80" alt="Author" class="author-avatar">
+                    <div>
+                        <h2>ML Researcher</h2>
+                        <p><i class="far fa-calendar-alt"></i> Published on March 29, 2024</p>
+                    </div>
+                </div>
+            </section> -->
+            
+            <section class="content-section">
+                <h2><i class="fas fa-code-branch"></i> Understanding the Basic Architecture</h2>
+                <p>In this deep dive, we'll explore decision trees from implementation to insights, examining how they make decisions based on information gain.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Decision Tree Class Implementation</span>
+                        <button class="copy-btn" title="Copy code"><i class="far fa-copy"></i></button>
+                    </div>
+                    <pre><code>class DecisionTree:
+    def __init__(self, min_samples_split=2, max_depth=100, n_feat=None):
+        self.min_samples_split = min_samples_split
+        self.max_depth = max_depth
+        self.n_feat = n_feat
+        self.root = None</code></pre>
+                </div>
+                
+                <div class="feature-list">
+                    <h3>Required Functions:</h3>
+                    <ul>
+                        <li><span class="function-name">fit</span> - Train the model on data</li>
+                        <li><span class="function-name">grow_tree</span> - Recursively build the tree</li>
+                        <li><span class="function-name">best_criteria</span> - Find optimal splitting criteria</li>
+                        <li><span class="function-name">information_gain</span> - Calculate entropy reduction</li>
+                        <li><span class="function-name">split</span> - Divide dataset based on feature value</li>
+                        <li><span class="function-name">most_common_label</span> - Find majority class</li>
+                        <li><span class="function-name">predict</span> - Make predictions with trained model</li>
+                        <li><span class="function-name">traverse_tree</span> - Navigate decision paths</li>
+                    </ul>
+                </div>
+                
+                <p>The model starts with all data points at the root and recursively divides the dataset at each step to maximize information gain, creating a tree-like structure of decisions.</p>
+            </section>
+            
+            <section class="visualization-section">
+                <h2><i class="fas fa-chart-line"></i> Model Performance Visualization</h2>
+                
+                <div class="visualization-tabs">
+                    <button class="tab-btn active" data-tab="confusion-matrix">Confusion Matrix</button>
+                    <button class="tab-btn" data-tab="decision-boundaries">Decision boundaries</button>
+                    <button class="tab-btn" data-tab="train-test">Training Vs Testing Accuracy</button>
+                </div>
+                
+                <div class="visualization-content">
+                    <div class="tab-content active" id="confusion-matrix">
+                        <div class="plot-container">
+                            <img src="assets/decisiontree/decisiontree1.png" alt="Confusion Matrix" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>Showing how much Accuracya and precision we have with the model</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="decision-boundaries">
+                        <div class="plot-container">
+                            <img src="assets/decisiontree/decisiontree2.png" alt="Decision tree boundaries" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>Decision boundaries created by the tree model on a 2D feature space, showing how the model partitions the space into regions.</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="train-test">
+                        <div class="plot-container">
+                            <img src="assets/decisiontree/decisiontree3.png" alt="Training Vs Testing Accuracy" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>The accuracy changement with changing max_depth</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="insights-section">
+                <h2><i class="fas fa-lightbulb"></i> Key Learnings and Challenges</h2>
+                <ul>
+                    <li><span class="insight-tag">Optimization</span> Finding an optimum max_depth is crucial to balance fit and generalization</li>
+                    <li><span class="insight-tag">Feature Prep</span> Decision trees do not require feature scaling, unlike many other algorithms</li>
+                    <li><span class="insight-tag">Regularization</span> Managing overfitting through pruning and minimum sample constraints</li>
+                </ul>
+                
+                <!-- <div class="add-insight-btn">
+                    <i class="fas fa-plus"></i> Add New Insight
+                </div> -->
+            </section>
+            
+            <section class="metrics-section">
+                <h2><i class="fas fa-chart-pie"></i> Model Performance Metrics</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Accuracy</h3>
+                        <p class="metric-value">93.85%</p>
+                        <div class="metric-trend positive">
+                            <i class="fas fa-arrow-up"></i> 2.1%
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>ROC Curve (AUC)</h3>
+                        <p class="metric-value">0.93</p>
+                        <div class="metric-trend positive">
+                            <i class="fas fa-arrow-up"></i> 0.05
+                        </div>
+                    </div>
+                    <!-- <div class="metric-card add-metric">
+                        <i class="fas fa-plus-circle"></i>
+                        <p>Add Metric</p>
+                    </div> -->
+                </div>
+            </section>
+            
+            <section class="comparison-section">
+                <h2><i class="fas fa-balance-scale"></i> Model Comparison</h2>
+                <div class="comparison-table-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Accuracy</th>
+                                <th>Training Time</th>
+                                <th>Interpretability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlighted-row">
+                                <td>Decision Tree</td>
+                                <td>93.85%</td>
+                                <td>0.45s</td>
+                                <td>High</td>
+                            </tr>
+                            <tr>
+                                <td>Random Forest</td>
+                                <td>95.2%</td>
+                                <td>1.32s</td>
+                                <td>Medium</td>
+                            </tr>
+                            <tr>
+                                <td>Logistic Regression</td>
+                                <td>87.3%</td>
+                                <td>0.21s</td>
+                                <td>Medium</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </article>
+    </main>
+    
+    <footer class="blog-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="footer-link"><i class="fas fa-download"></i> Download Notebook</a>
+                <a href="#" class="footer-link"><i class="fab fa-github"></i> View GitHub Repo</a>
+                <a href="#" class="footer-link"><i class="fas fa-share-alt"></i> Share</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="scripts/blog-script.js"></script>
+</body>
+</html>
