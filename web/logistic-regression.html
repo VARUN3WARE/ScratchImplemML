@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistic Regression Insights | Deep Dive</title>
+    <link rel="stylesheet" href="styles/blog-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="blog-header">
+        <div class="container">
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            <h1>Logistic Regression: From Scratch to Insights</h1>
+        </div>
+    </header>
+    
+    <main class="blog-content container">
+        <article class="blog-post">
+            <section class="post-header">
+                <div class="author-info">
+                    <img src="assets/linearregression/linearregressionimg.png" alt="Author" class="author-avatar">
+                    <div>
+                        <h2>Varun Rao</h2>
+                        <p><i class="far fa-calendar-alt"></i> Published on April 1, 2025</p>
+                    </div>
+                </div>
+            </section>
+            <section class="content-section">
+                <h2><i class="fas fa-code-branch"></i> Understanding the Basic Architecture</h2>
+                <p>In this deep dive, we'll explore Logistic regression , which is just like linear regression in impplementation with just one change implying sigmoid at the end making the regression turn into a probability one i.e., a classification model.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Logistic Regression Class Implementation</span>
+                        <button class="copy-btn" title="Copy code"><i class="far fa-copy"></i></button>
+                    </div>
+                    <pre>
+class LogisticRegression:
+    def __init__(self,ler_r=0.001,nf_iters=1000):
+        self.ler_r=ler_r
+        self.nf_iters=nf_iters
+        self.weights=None
+        self.bias=None
+        self.acc_history=[]</pre>
+                </div>
+                
+                <div class="feature-list">
+                    <h3>Required Functions:</h3>
+                    <ul>
+                        <li><span class="function-name">fit</span> - fits the model</li>
+                        <li><span class="function-name">compute_gradients</span> - Computes the derivative</li>
+                        <li><span class="function-name">sigmoid</span> - transformed a value using sigmoid function</li>
+                        <li><span class="function-name">predict</span> - Make predictions with trained model</li>
+                    </ul>
+                </div>
+                
+                <p>The model starts with initailizing weights and biases randomly or zero then change them rigorously on the basis of gradient descents with a learning rate for some epochs in same way like linear regression but just it gives probability in last with value form 0 to 1.</p>
+            </section>
+            
+            <section class="visualization-section">
+                <h2><i class="fas fa-chart-line"></i> Model Performance Visualization</h2>
+                
+                <div class="visualization-tabs">
+                    <button class="tab-btn active" data-tab="learning-curve">Learning curve</button>
+                    <button class="tab-btn" data-tab="Confusion-matrix">Confusion Matrix</button>
+                    <button class="tab-btn" data-tab="ROC-AUC">ROC-AUC Curve</button>
+                </div>
+                
+                <div class="visualization-content">
+                    <div class="tab-content active" id="learning-curve">
+                        <div class="plot-container">
+                            <img src="assets/logisticregression/logisticregression1.png" alt="learning-curve" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>Showing how the Accuracy is fluctuating with changing iterations.</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="Confusion-matrix">
+                        <div class="plot-container">
+                            <img src="assets/logisticregression/logisticregression2.png" alt="Confusion-matrix" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>Confusion Matrix which shows how the Accuracy and Precission.</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="ROC-AUC">
+                        <div class="plot-container">
+                            <img src="assets/logisticregression/logisticregression3.png" alt="ROC-AUC" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>ROC-AUC curve which tells us about true Positive rate and False Positive rate relation </p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            
+            <section class="insights-section">
+                <h2><i class="fas fa-lightbulb"></i> Key Learnings and Challenges</h2>
+                <ul>
+                    <li><span class="insight-tag">Easy</span> easiest of the model to implement.</li>
+                    <li><span class="insight-tag">Linear separable</span>it performs very well for problems in which classes are linearly separable.</li>
+                    <li><span class="insight-tag">Regularization</span> can help prevent overfitting by using L1 or L2 techniques.</li>
+                    <li><span class="insight-tag">Limits</span>Sensitivity to outliers, assumes linearity.</li>
+                </ul>
+            </section>
+            
+            <section class="metrics-section">
+                <h2><i class="fas fa-chart-pie"></i> Model Performance Metrics</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Accuracy</h3>
+                        <p class="metric-value">94.7%</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>ROC-AUC score</h3>
+                        <p class="metric-value">0.96></p>
+                    </div>
+            </section>
+        
+        </article>
+    </main>
+    
+    <footer class="blog-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/VARUN3WARE/ScratchImplemML/blob/main/noteboooks/LinearRegressionFromScratch.ipynb" class="footer-link"><i class="fab fa-github"></i> View GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="scripts/blog-script.js"></script>
+</body>
+</html>

@@ -1,2 +1,3 @@
 # ALL ML from scratch 
-full understanding the code from now on 
+
+Here, I will be uploading the algorithms and all i am learning time to time
