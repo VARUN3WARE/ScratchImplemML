@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNN Insights | Deep Dive</title>
+    <link rel="stylesheet" href="styles/blog-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="blog-header">
+        <div class="container">
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            <h1>K-Nearest Neighbour: From Scratch to Insights</h1>
+        </div>
+    </header>
+    
+    <main class="blog-content container">
+        <article class="blog-post">
+            <section class="post-header">
+                <div class="author-info">
+                    <img src="assets/knn/knn.png" alt="Author" class="author-avatar">
+                    <div>
+                        <h2>Varun Rao</h2>
+                        <p><i class="far fa-calendar-alt"></i> Published on April 5, 2025</p>
+                    </div>
+                </div>
+            </section>
+            <section class="content-section">
+                <h2><i class="fas fa-code-branch"></i> Understanding the Basic Architecture</h2>
+                <p>In this deep dive, we'll explore KNNs from implementation to insights, where we check the where the k Nearest points lie in the Classification viewpoint.</p>
+                
+                <!-- <div class="code-block">
+                    <div class="code-header">
+                        <span>KNN Class Implementation</span>
+                        <button class="copy-btn" title="Copy code"><i class="far fa-copy"></i></button>
+                    </div>
+                    <pre>
+                    euclideanDistance()
+                    getNeighbors()
+                    getNeighbors()
+                    </pre>
+                </div> -->
+                
+                <div class="feature-list">
+                    <h3>Required Functions:</h3>
+                    <ul>
+                        <li><span class="function-name">euclideanDistance</span> - for finding euclideanDistance</li>
+                        <li><span class="function-name">getNeighbors</span> - fin k nearest neighbours</li>
+                        <li><span class="function-name">getResponse</span> - predicts the class of test instance</li>
+                        <li><span class="function-name">predict</span> - Make predictions with trained model</li>
+                    </ul>
+                </div>
+                
+                <p>The model for a specific point find its k near points and get the major voting and predict on basis of that (Regression or Classification).</p>
+            </section>
+            
+            <section class="visualization-section">
+                <h2><i class="fas fa-chart-line"></i> Model Performance Visualization</h2>
+                
+                <div class="visualization-tabs">
+                    <button class="tab-btn active" data-tab="confusion-matrix">confusion-matrix</button>
+                    <button class="tab-btn" data-tab="des-bound">Decision boundaries</button>
+                </div>
+                
+                <div class="visualization-content">
+                    <div class="tab-content active" id="confusion-matrix">
+                        <div class="plot-container">
+                            <img src="assets/knn/knn1.png" alt="confusion-matrix" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>Showing how much true positives and false positives are:</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="des-bound">
+                        <div class="plot-container">
+                            <img src="assets/knn/knn2.png" alt="des-bound" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>Displays the Decision boundaries for different classes.</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            
+            <section class="insights-section">
+                <h2><i class="fas fa-lightbulb"></i> Key Learnings and Challenges</h2>
+                <ul>
+                    <li><span class="insight-tag">Lazy learner</span> it doesn’t require a training phase..</li>
+                    <li><span class="insight-tag">Non-Parametric</span>You doesn’t need to know anything about data distribution at all.</li>
+                    <li><span class="insight-tag">Flexible with Distance Metrics</span> Any Distance metric can be used afterall.</li>
+                    <li><span class="insight-tag">High Computational Complexity</span> As need to be calculated for each point afterall.</li>
+                    <li><span class="insight-tag">Memory Intensive</span>As it needs to store all data.</li>
+                    <li><span class="insight-tag">Chosing of K</span>Model heavily depends on K value.</li>
+                </ul>
+                
+            </section>
+            
+            <section class="metrics-section">
+                <h2><i class="fas fa-chart-pie"></i> Model Performance Metrics</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Accuracy</h3>
+                        <p class="metric-value">97.37%</p>
+                    </div>
+                    <!-- <div class="metric-card">
+                        <h3>Mean Squared  Error</h3>
+                        <p class="metric-value">236.470></p>
+                    </div> -->
+            </section>
+        
+        </article>
+    </main>
+    
+    <footer class="blog-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/VARUN3WARE/ScratchImplemML/blob/main/noteboooks/KNN.ipynb" class="footer-link"><i class="fab fa-github"></i> View GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="scripts/blog-script.js"></script>
+</body>
+</html>
