@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logistic Regression Insights | Deep Dive</title>
+    <title>SVM Insights | Deep Dive</title>
     <link rel="stylesheet" href="styles/blog-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -11,7 +11,7 @@
     <header class="blog-header">
         <div class="container">
             <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
-            <h1>Logistic Regression: From Scratch to Insights</h1>
+            <h1>SVM: From Scratch to Insights</h1>
         </div>
     </header>
     
@@ -19,88 +19,61 @@
         <article class="blog-post">
             <section class="post-header">
                 <div class="author-info">
-                    <img src="assets/logisticregression/lr.jpeg" alt="Author" class="author-avatar">
+                    <img src="assets/SVM/svm.png" alt="Author" class="author-avatar">
                     <div>
                         <h2>Varun Rao</h2>
-                        <p><i class="far fa-calendar-alt"></i> Published on April 1, 2025</p>
+                        <p><i class="far fa-calendar-alt"></i> Published on April 4, 2025</p>
                     </div>
                 </div>
             </section>
+            
             <section class="content-section">
                 <h2><i class="fas fa-code-branch"></i> Understanding the Basic Architecture</h2>
-                <p>In this deep dive, we'll explore Logistic regression , which is just like linear regression in impplementation with just one change implying sigmoid at the end making the regression turn into a probability one i.e., a classification model.</p>
+                <p>In this deep dive, we'll explore SVM from implementation to insights, It majorly finds optimal boundaries that maximizes the Distance between each class in a N-dimensional space.</p>
                 
                 <div class="code-block">
                     <div class="code-header">
-                        <span>Logistic Regression Class Implementation</span>
+                        <span>SVM Class Implementation</span>
                         <button class="copy-btn" title="Copy code"><i class="far fa-copy"></i></button>
                     </div>
                     <pre>
-class LogisticRegression:
-    def __init__(self,ler_r=0.001,nf_iters=1000):
-        self.ler_r=ler_r
-        self.nf_iters=nf_iters
-        self.weights=None
-        self.bias=None
-        self.acc_history=[]</pre>
+class SVM:
+    def __init__(self, learning_rate=0.001, lambda_param=0.01, n_iters=1000):
+        self.lr = learning_rate
+        self.lambda_param = lambda_param
+        self.n_iters = n_iters
+        self.w = None
+        self.b = None
+        self.losses = []</pre>
                 </div>
                 
                 <div class="feature-list">
                     <h3>Required Functions:</h3>
                     <ul>
-                        <li><span class="function-name">fit</span> - fits the model</li>
-                        <li><span class="function-name">compute_gradients</span> - Computes the derivative</li>
-                        <li><span class="function-name">sigmoid</span> - transformed a value using sigmoid function</li>
-                        <li><span class="function-name">predict</span> - Make predictions with trained model</li>
+                        <li><span class="function-name">fit</span> - Train the SVM model.</li>
+                        <li><span class="function-name">predict</span> - Make predictions with trained model.</li>
                     </ul>
                 </div>
                 
-                <p>The model starts with initailizing weights and biases randomly or zero then change them rigorously on the basis of gradient descents with a learning rate for some epochs in same way like linear regression but just it gives probability in last with value form 0 to 1.</p>
+                <p>The model starts making a Hyperplane whose goal is to divide the N-dimensional data points in best efficient way.</p>
             </section>
             
             <section class="visualization-section">
                 <h2><i class="fas fa-chart-line"></i> Model Performance Visualization</h2>
                 
                 <div class="visualization-tabs">
-                    <button class="tab-btn active" data-tab="learning-curve">Learning curve</button>
-                    <button class="tab-btn" data-tab="Confusion-matrix">Confusion Matrix</button>
-                    <button class="tab-btn" data-tab="ROC-AUC">ROC-AUC Curve</button>
+                    <button class="tab-btn active" data-tab="loss-curve">Loss Curve During Training</button>
+                    <button class="tab-btn" data-tab="decision-boundaries">SVM decision boundaries</button>
+                    <button class="tab-btn" data-tab="lr">Lr effect on Decision boundaries</button>
+                    <button class="tab-btn" data-tab="lambda-param">lambda effect on DB</button>
                 </div>
                 
                 <div class="visualization-content">
-                    <div class="tab-content active" id="learning-curve">
+                    <div class="tab-content active" id="loss-curve">
                         <div class="plot-container">
-                            <img src="assets/logisticregression/logisticregression1.png" alt="learning-curve" class="responsive-plot">
+                            <img src="assets/SVM/SVM1.png" alt="loss-curve" class="responsive-plot">
                             <div class="plot-caption">
-                                <p>Showing how the Accuracy is fluctuating with changing iterations.</p>
-                            </div>
-                            <div class="plot-controls">
-                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
-                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
-                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="Confusion-matrix">
-                        <div class="plot-container">
-                            <img src="assets/logisticregression/logisticregression2.png" alt="Confusion-matrix" class="responsive-plot">
-                            <div class="plot-caption">
-                                <p>Confusion Matrix which shows how the Accuracy and Precission.</p>
-                            </div>
-                            <div class="plot-controls">
-                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
-                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
-                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="ROC-AUC">
-                        <div class="plot-container">
-                            <img src="assets/logisticregression/logisticregression3.png" alt="ROC-AUC" class="responsive-plot">
-                            <div class="plot-caption">
-                                <p>ROC-AUC curve which tells us about true Positive rate and False Positive rate relation </p>
+                                <p>Shows the change in loss from each iteration preceding.</p>
                             </div>
                             <div class="plot-controls">
                                 <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
@@ -110,39 +83,85 @@ class LogisticRegression:
                         </div>
                     </div>
 
+                    <div class="tab-content" id="decision-boundaries">
+                        <div class="plot-container">
+                            <img src="assets/SVM/SVM2.png" alt="decision-boundaries" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>the decision boundaries,points after them are clearly defined but else are in point of caution.</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="lr">
+                        <div class="plot-container">
+                            <img src="assets/SVM/SVM3.png" alt="learning_rate effect" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>It Shows how the decision-boundaries is changing with learning rate.</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="lambda-param">
+                        <div class="plot-container">
+                            <img src="assets/SVM/SVM4.png" alt="lambda-param effect" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>It Shows how the decision-boundaries is changing with Regularization param(lambda).</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    
                 </div>
             </section>
             
             <section class="insights-section">
                 <h2><i class="fas fa-lightbulb"></i> Key Learnings and Challenges</h2>
                 <ul>
-                    <li><span class="insight-tag">Easy</span> easiest of the model to implement.</li>
-                    <li><span class="insight-tag">Linear separable</span>it performs very well for problems in which classes are linearly separable.</li>
-                    <li><span class="insight-tag">Regularization</span> can help prevent overfitting by using L1 or L2 techniques.</li>
-                    <li><span class="insight-tag">Limits</span>Sensitivity to outliers, assumes linearity.</li>
+                    <li><span class="insight-tag">Outlier Detection</span> can be used to detect outliers .</li>
+                    <li><span class="insight-tag">Memory Efficient</span> Just stores the SVM not the data points during training.</li>
+                    <li><span class="insight-tag">Computationally expensive</span> with a time constraint of  O(n^3)</li>
+                    <li><span class="insight-tag">Black Box</span>Interpretation  is difficult cause of complex functions of SVM.</li>
+                    <li><span class="insight-tag">Poor</span> difficult to handle missing and noisy data.</li>
                 </ul>
+                
             </section>
             
-            <section class="metrics-section">
+            <!-- <section class="metrics-section">
                 <h2><i class="fas fa-chart-pie"></i> Model Performance Metrics</h2>
                 <div class="metrics-grid">
                     <div class="metric-card">
                         <h3>Accuracy</h3>
-                        <p class="metric-value">94.7%</p>
+                        <p class="metric-value">93.85%</p>
                     </div>
                     <div class="metric-card">
-                        <h3>ROC-AUC score</h3>
-                        <p class="metric-value">0.96></p>
+                        <h3>ROC Curve (AUC)</h3>
+                        <p class="metric-value">0.93</p>
                     </div>
-            </section>
-        
+                </div>
+            </section> -->
+            
+
         </article>
     </main>
     
     <footer class="blog-footer">
         <div class="container">
             <div class="footer-links">
-                <a href="https://github.com/VARUN3WARE/ScratchImplemML/blob/main/noteboooks/LogisticRegressionFromSratch.ipynb" class="footer-link"><i class="fab fa-github"></i> View GitHub Repo</a>
+                <a href="https://github.com/VARUN3WARE/ScratchImplemML/blob/main/noteboooks/SVM.ipynb" class="footer-link"><i class="fab fa-github"></i> View GitHub Repo</a>
             </div>
         </div>
     </footer>
