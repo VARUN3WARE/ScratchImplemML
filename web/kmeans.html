@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kmeans Insights | Deep Dive</title>
+    <link rel="stylesheet" href="styles/blog-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="blog-header">
+        <div class="container">
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            <h1>Decision Tree: From Scratch to Insights</h1>
+        </div>
+    </header>
+    
+    <main class="blog-content container">
+        <article class="blog-post">
+            <section class="post-header">
+                <div class="author-info">
+                    <img src="assets/kmeans/kmeans.jpg" alt="Author" class="author-avatar">
+                    <div>
+                        <h2>Varun Rao</h2>
+                        <p><i class="far fa-calendar-alt"></i> Published on April 6, 2025</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="content-section">
+                <h2><i class="fas fa-code-branch"></i> Understanding the Basic Architecture</h2>
+                <p>In this deep dive, we'll explore decision trees from implementation to insights, examining how they make clusters with minimizing the distance between them and centroid. <center></center></p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Kmeans Class Implementation</span>
+                        <button class="copy-btn" title="Copy code"><i class="far fa-copy"></i></button>
+                    </div>
+                    <pre>
+class KMeans:
+    def __init__(self, K=3, max_iters=100, plot_steps=False):
+        self.K = K  # Number of clusters
+        self.max_iters = max_iters  # Maximum number of iterations
+        self.plot_steps = plot_steps  # Flag to plot intermediate steps
+                    
+        self.clusters = [[] for _ in range(self.K)]  # List of sample indices for each cluster
+        self.centroids = []  # List of centroids
+        self.centroid_history = []  # To track centroids at each iteration</pre>
+                </div>
+                
+                <div class="feature-list">
+                    <h3>Required Functions:</h3>
+                    <ul>
+                        <li><span class="function-name">_get_cluster_labels</span> - Get cluster labels for each sample</li>
+                        <li><span class="function-name">_create_clusters</span> - Create clusters by assigning each sample to the nearest centroid</li>
+                        <li><span class="function-name">_closest_centroid</span> - Find the closest centroid to a sample</li>
+                        <li><span class="function-name">_get_centroids</span> - Calculate new centroids as the mean of the assigned points</li>
+                        <li><span class="function-name">_is_converged</span> - Check if centroids have converged (no change)</li>
+                        <li><span class="function-name">plot</span> - Plot function to visualize the progress of clustering</li>
+                        <li><span class="function-name">plot_centroid_evaluation</span> - Visualizing centroid evolution</li>
+                        <li><span class="function-name">predict</span> - Make predictions with trained model</li>
+                    </ul>
+                </div>
+                
+                <p>The model starts with assigning k centroids and then two step is followed iteratively, first each data point is given to it's closest centroid and the mean of that cluster is re-evaluated and this procsss continues until  it converges.</p>
+            </section>
+            
+            <section class="visualization-section">
+                <h2><i class="fas fa-chart-line"></i> Model Performance Visualization</h2>
+                
+                <div class="visualization-tabs">
+                    <button class="tab-btn active" data-tab="cluster-evol">cluster evolution</button>
+                    <button class="tab-btn" data-tab="Elbow-met">Elbow method</button>
+                    <button class="tab-btn" data-tab="Silhouette-score">Silhouette score</button>
+                </div>
+                
+                <div class="visualization-content">
+                    <div class="tab-content active" id="cluster-evol">
+                        <div class="plot-container">
+                            <img src="assets/kmeans/kmeans1.png" alt="cluster-evol" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>Shows the evolution of cluster wiht iterations step by step.</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="Elbow-met">
+                        <div class="plot-container">
+                            <img src="assets/kmeans/kmeans2.png" alt="Elbow-met" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p>Elbow method which shows the optimal no. of clusters on basis of the wcss score.</p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="Silhouette-score">
+                        <div class="plot-container">
+                            <img src="assets/kmeans/kmeans3.png" alt="Silhouette-score" class="responsive-plot">
+                            <div class="plot-caption">
+                                <p></p>
+                            </div>
+                            <div class="plot-controls">
+                                <button class="plot-control-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button class="plot-control-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button class="plot-control-btn" title="Download Plot"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="insights-section">
+                <h2><i class="fas fa-lightbulb"></i> Key Learnings and Challenges</h2>
+                <ul>
+                    <li><span class="insight-tag">Convergence to Local Minima</span> Sometimes it might not converges to global optimal solution.</li>
+                    <li><span class="insight-tag">Spherical Clusters</span> Clusters having spherical shape are perfect for this kind of model.</li>
+                    <li><span class="insight-tag">Homogeneous Cluster Sizes</span> Cluster sizes are same for each</li>
+                    <li><span class="insight-tag">Fast </span> time complexity is low so can be used for large dataset.</li>
+                    <li><span class="insight-tag">Easy to interpret</span> model is easily predictable</li>
+                    <li><span class="insight-tag">Sensitive for initialization</span> wrong initialization can lead to bad results , so gotta use  the kmeans++.</li>
+                
+                <!-- <div class="add-insight-btn">
+                    <i class="fas fa-plus"></i> Add New Insight
+                </div> -->
+            </section>
+            
+            <section class="metrics-section">
+                <h2><i class="fas fa-chart-pie"></i> Model Performance Metrics</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Silhouette Score</h3>
+                        <p class="metric-value">0.6837</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>No. of clusters</h3>
+                        <p class="metric-value">3</p>
+                    </div>
+                </div>
+            </section>
+            
+
+        </article>
+    </main>
+    
+    <footer class="blog-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/VARUN3WARE/ScratchImplemML/blob/main/noteboooks/Kmeans.ipynb" class="footer-link"><i class="fab fa-github"></i> View GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="scripts/blog-script.js"></script>
+</body>
+</html>
